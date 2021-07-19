@@ -1,0 +1,42 @@
+*, *::after, *::before{
+  box-sizing: border-box;
+}
+
+:root {
+  --cell-size:200px;
+}
+body {
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+}
+section{
+  text-align: center;
+}
+
+.container {
+  width: 610px;
+  height: 610px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: black;
+}
+
+.container div {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 5px; 
+
+
+
+}
+
+.playerO {
+  background-image: url(o.svg);
+}
+.playerX {
+  background-image: url(x.svg);
+}
