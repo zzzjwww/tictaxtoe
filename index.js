@@ -27,10 +27,11 @@ function clickOutcome(e) {
     } else {
         squares[index].classList.add("playerO");
         currentPlayer = "PlayerX";
-    }
+    };
 
     if (checkWin(currentPlayer)) {
-        console.log("win")
+        debugger;
+        currentPlayer = `${currentPlayer} win!`
     };
 }
 
