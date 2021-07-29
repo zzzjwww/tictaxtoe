@@ -22,6 +22,7 @@ function clickEffect(e) {
     }
     const cellIndex = gridArray.indexOf(e.target);
     let currentPlayer = nextPlayer ? "playerO" : "playerX";
+    gameStatus.textContent = `Current player: ${currentPlayer}.`
     e.target.classList.add(currentPlayer);
     e.target.setAttribute("data-index", cellIndex);
 
@@ -46,6 +47,7 @@ function clickEffect(e) {
 }
 
 function reStartGame() {
+    GameOver = false;
     grid.forEach(ele => ele.className = "");
     grid.forEach(ele => ele.setAttribute("data-index", ""));
 }
