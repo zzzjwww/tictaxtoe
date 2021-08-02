@@ -5,7 +5,7 @@
 :root {
   --cell-size:200px;
 }
-body {
+body *{
   font-family: 'Courier New', Courier, monospace;
   margin: 0;
 }
@@ -29,9 +29,6 @@ section{
   background-color: white;
   cursor: pointer;
   margin-bottom: 5px; 
-
-
-
 }
 
 .playerO {
@@ -39,4 +36,18 @@ section{
 }
 .playerX {
   background-image: url(x.svg);
+}
+.game-btn{
+  display: none;
+}
+
+.shown{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.1rem;
+  padding: 5px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 2px;
+  background-color: rgb(203, 203, 203);
+
 }
