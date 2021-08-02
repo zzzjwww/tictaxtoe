@@ -5,14 +5,14 @@ let gameStatus = document.querySelector(".game-status");
 let nextPlayer = false;
 let GameOver = false;
 const winArr = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
+    /012/,
+    /345/,
+    /678/,
+    /0\d*3\d*6/,
+    /1\d*4\d*7/,
+    /2\d*5\d*8/,
+    /0\d*4\d*8/,
+    /2\d*4\d*6/
 ];
 
 function clickEffect(e) {
@@ -33,7 +33,7 @@ function clickEffect(e) {
     console.log(playerIndexArr);
 
     //this has an error when a digit is inbetween the matching string, it does not work. eg "0136"
-    if (winArr.some(combo => playerIndexArr.join("").includes(combo.join("")))) {
+    if (winArr.some(combo => combo.test(playerIndexArr.join("")))) {
         gameStatus.textContent = `The winer is ${currentPlayer}!`;
         GameOver = true;
         startBtn.textContent = `RESTART GAME`;
