@@ -21,23 +21,25 @@ const winArr = [
 
 // when click
 function clickEffect(e) {
+    //check if gameover 
     if (GameOver) {
         startBtn.textContent = `RESTART GAME`;
         gameStatus.textContent = `Game over, start over`;
     }
+    //get index of cell 
     const cellIndex = gridArray.indexOf(e.target);
+    //decide current player and display
     let currentPlayer = nextPlayer ? "playerO" : "playerX";
     gameStatus.textContent = `Current player: ${currentPlayer}.`;
+    // add current player mark & index to html
     e.target.classList.add(currentPlayer);
     e.target.setAttribute("data-index", cellIndex);
-
+    // collect and turn into array of currentplayer index
     let playerCells = Array.from(document.querySelectorAll(`.${currentPlayer}`));
 
     let playerIndexArr = playerCells.map((ele) => Number(ele.getAttribute("data-index")));
 
-    console.log(playerIndexArr);
-
-    //check win
+    //check if current player wins or draw or go on to the next player
     if (winArr.some(combo => combo.test(playerIndexArr.join("")))) {
         gameStatus.textContent = `The winer is ${currentPlayer}!`;
         GameOver = true;
@@ -51,12 +53,13 @@ function clickEffect(e) {
         startBtn.classList.add("shown");
         startBtn.classList.remove("game-btn");
     } else {
-        nextPlayer = !nextPlayer;;
+        nextPlayer = !nextPlayer;
+        //add robot function here
     }
 }
 
-function robotMove(){
-    
+function robotMove() {
+
 }
 
 //restart btn->function

@@ -42,12 +42,11 @@ section{
 }
 
 .shown{
-  font-family: 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
   font-size: 1.1rem;
   padding: 5px;
   margin-top: 10px;
   border: none;
   border-radius: 2px;
   background-color: rgb(203, 203, 203);
-
 }
