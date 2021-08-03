@@ -58,10 +58,6 @@ function clickEffect(e) {
     }
 }
 
-function robotMove() {
-
-}
-
 //restart btn->function
 function reStartGame() {
     GameOver = false;

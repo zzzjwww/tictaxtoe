@@ -1,7 +1,3 @@
-*, *::after, *::before{
-  box-sizing: border-box;
-}
-
 :root {
   --cell-size:200px;
 }
@@ -42,7 +38,6 @@ section{
 }
 
 .shown{
-  /* font-family: 'Courier New', Courier, monospace; */
   font-size: 1.1rem;
   padding: 5px;
   margin-top: 10px;
