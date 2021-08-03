@@ -46,3 +46,6 @@ section{
   border-radius: 4px;
   background-color: rgb(203, 203, 203);
 }
+.game-title, .game-status {
+  margin-top: 2rem;
+} 

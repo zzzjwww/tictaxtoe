@@ -25,6 +25,11 @@ function clickEffect(e) {
     if (GameOver) {
         gameStatus.textContent = `Game over, start over`;
         return;
+    };
+    //check if the cell was clicked
+    if (e.target.dataset.index){
+        console.log(e.target.classList);
+        return;
     }
     //get index of cell 
     const cellIndex = gridArray.indexOf(e.target);
@@ -40,13 +45,19 @@ function clickEffect(e) {
     let playerIndexArr = playerCells.map((ele) => Number(ele.getAttribute("data-index")));
 
     //check if current player wins or draw or go on to the next player
+    checkWin(currentPlayer,playerIndexArr);
+}
+
+
+
+function checkWin (currentPlayer, playerIndexArr){
     if (winArr.some(combo => combo.test(playerIndexArr.join("")))) {
         gameStatus.textContent = `The winer is ${currentPlayer}!`;
         GameOver = true;
         startBtn.textContent = `RESTART GAME`;
         startBtn.classList.add("shown");
         startBtn.classList.remove("game-btn");
-    } else if (playerCells.length >= 5) {
+    } else if (playerIndexArr.length >= 5) {
         gameStatus.textContent = `It's a draw.`;
         GameOver = true;
         startBtn.textContent = `RESTART GAME`;
@@ -57,13 +68,14 @@ function clickEffect(e) {
         //add robot function here
     }
 }
-
 //restart btn->function
 function reStartGame() {
     GameOver = false;
     grid.forEach(ele => ele.className = "");
     grid.forEach(ele => ele.setAttribute("data-index", ""));
 }
+
+
 
 //action play and restart
 grid.forEach(cell => cell.addEventListener("click", clickEffect));
