@@ -39,9 +39,10 @@ section{
 
 .shown{
   font-size: 1.1rem;
+  font-weight: bold;
   padding: 5px;
   margin-top: 10px;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: rgb(203, 203, 203);
 }

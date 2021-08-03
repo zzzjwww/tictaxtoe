@@ -23,8 +23,8 @@ const winArr = [
 function clickEffect(e) {
     //check if gameover 
     if (GameOver) {
-        startBtn.textContent = `RESTART GAME`;
         gameStatus.textContent = `Game over, start over`;
+        return;
     }
     //get index of cell 
     const cellIndex = gridArray.indexOf(e.target);
