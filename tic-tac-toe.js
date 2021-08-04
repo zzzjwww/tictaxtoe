@@ -8,7 +8,7 @@ let playerNumDisplay = document.querySelector(".game-player-number");
 let players = prompt("How many player?", "1 or 2");
 if (!(players == 1 || players == 2)) {
     alert(`Invalid number of players. We only supoort 1 or 2 players now.`);
-} 
+}
 playerNumDisplay.textContent = `${players}-player Mode`;
 //global flags
 let nextPlayer = false;
@@ -37,7 +37,7 @@ function clickEffect(e) {
     if (e.target.dataset.index) {
         return;
     };
-    //get index of cell 
+    //get index of cell clicked
     const cellIndex = gridArray.indexOf(e.target);
     //decide current player and display
     let currentPlayer = nextPlayer ? "playerO" : "playerX";
@@ -45,19 +45,20 @@ function clickEffect(e) {
     // add current player mark & index to html
     e.target.classList.add(currentPlayer);
     e.target.setAttribute("data-index", cellIndex);
-    // collect and turn into array of currentplayer index
+    // collect all cells so far and turn into array of currentplayer index
     let playerCells = Array.from(document.querySelectorAll(`.${currentPlayer}`));
     let playerIndexArr = playerCells.map((ele) => Number(ele.getAttribute("data-index")));
+    // if one player, run robot
 
-    //check if current player wins or draw or go on to the next player
-
-    robotMove(currentPlayer,playerCells);
     checkWin(currentPlayer, playerIndexArr);
+    robotMove(currentPlayer, playerIndexArr);
+
     nextPlayer = !nextPlayer;
 }
 
 
 function checkWin(currentPlayer, playerIndexArr) {
+
     if (winArr.some(combo => combo.test(playerIndexArr.join("")))) {
         gameStatus.textContent = `The winer is ${currentPlayer}!`;
         GameOver = true;
@@ -75,20 +76,24 @@ function checkWin(currentPlayer, playerIndexArr) {
     }
 }
 
-function robotMove(currentPlayer,playerCells) {
-    if (players == 2) {
+function robotMove(currentPlayer, playerIndexArr) {
+    if (players == 2 || GameOver == true) {
         return 0;
     };
     nextPlayer = !nextPlayer;
     currentPlayer = nextPlayer ? "playerO" : "playerX";
     let robotCell = Math.floor(Math.random() * 9);
-    if (playerCells.length>4) return;
+    if (playerIndexArr.length >= 5) return;
     while (grid[robotCell].dataset.index) {
         robotCell = Math.floor(Math.random() * 9);
         console.log(grid[robotCell]);
     }
     grid[robotCell].classList.add(`${currentPlayer}`);
     grid[robotCell].dataset.index = robotCell;
+    let playerOIndexArr = Array.from(document.querySelectorAll(`.${currentPlayer}`))
+        .map((ele) => Number(ele.getAttribute("data-index")));
+    checkWin(currentPlayer, playerOIndexArr);
+
 }
 //restart btn->function
 function reStartGame() {
